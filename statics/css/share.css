@@ -1,0 +1,199 @@
+@import url("reset.css");
+html,body{
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    font-size: 62.5%;
+    font-family: "Microsoft Yahei" sans-serif;
+    background: #e7e7e7;
+}
+html{
+    max-width: 640px;
+    margin: 0 auto;
+}
+.fl{
+    float: left;
+}
+section{
+    /*margin: 5% 0;*/
+    background: #fff;
+   
+}
+.w92{
+    width: 92%; 
+    padding: 0 4%;
+    overflow: hidden;
+}
+.w96{
+    width: 96%; 
+    padding: 0 2%;
+    overflow: hidden;
+}
+section h1{
+    font-size: 2.6em;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+section h1 span{
+    font-size: 0.7em;
+    color: #9d0a0a;
+    text-align: center;
+    border: 1px #9d0a0a solid;
+    margin-right: 0.6em;
+    padding: 0.1em 0.3em;
+}
+.user{
+    width: 100%;
+
+}
+.headpic{
+  padding-right: 1em;
+
+}
+.headpic img{
+    padding-top: 0.3em;
+    width: 3.8em;
+   
+}
+.user-name{
+   width: 80%;
+}
+.txt01,.txt02,.txt03,.txt04{
+    line-height: 150%;
+    text-align: justify;
+    text-justify:inter-ideograph;
+}
+.txt01{
+    font-size: 2.6em;
+    font-weight: bold;
+}
+.txt03{
+    font-size: 2.6em;
+
+}
+.txt04{
+    font-size: 2.2em;
+
+}
+
+
+.txt01 span{
+    background: url(../images/lz.png) center no-repeat;
+    text-align: center;
+    width: 2.4em;
+    line-height: 2.2em;
+    font-size: 0.5em;
+    display: inline-block;
+    color: #9d0a0a;
+    background-size: 100%  auto;
+    -webkit-background-size:100% auto;
+    font-weight: normal;
+
+}
+.txt02{
+    color: #b2b2b2;
+    font-size: 2em;
+}
+.txt02 img{
+    width: 1em;
+    vertical-align: middle;
+    padding: 0 0.6em;
+    margin-top: -0.2em;
+}
+.pb01{
+    padding-bottom: 1em;
+}
+.topuser-txt{
+    background: #f2f2f2;
+    padding: 3%;
+    margin-bottom: 1em;
+}
+.topuser-txt p{
+    font-size: 2.2em;
+    line-height: 150%;
+    padding-bottom: 1em;
+}
+.topuser-txt img{
+    width: 100%;
+}
+.pb02{
+    padding-bottom: 0.7em;
+}
+.pb03{
+    padding-bottom: 1em;
+}
+.pb03{
+    padding-bottom: 1.5em;
+}
+.txt04 .reply{
+    color: #ec5d2f;
+}
+.txt04 .re-times{
+    font-size: 0.5em;
+    color: #b2b2b2;
+}
+
+
+.top{
+	width: 100%;
+    position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	height: 6.25em;
+    color: #ffea00;
+	background:rgba(0,0,0,0.5); 
+
+}
+.top img{
+    width: 5em;
+    float: left;
+    display: block;
+    padding: 1.6% 1% 0 4%;
+}
+.top span{
+    font-size: 2.6em;
+    float: left;
+    padding: 4.2% 1% 0 2%;
+    
+}
+.btn-dl{
+    font-size: 2.6em;
+    width: 8em;
+    line-height: 2.6em;
+    background: #ffda16;
+    color: #000;
+    text-align: center;
+    display: block;
+    float: right;
+    margin: 3% 5% 0 0 ;
+/*    border-radius: 0.5em;*/
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 340px){
+    .headpic img{
+    width: 6.7em;
+    }
+    .top{
+    height: 9.8em;
+    }
+.top img{
+    width: 7.2em;
+}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 320px){
+    .headpic img{
+    width: 3.8em;
+    }
+    .top{
+    height: 6.25em;
+    }
+.top img{
+    width: 5em;
+}
+}

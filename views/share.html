@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta charset="UTF-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/share.css"/>
+</head>
+<body>
+	<div class="top" style="display:;">
+		<img src="/images/csl-icon.png" alt="">
+		<span>中超手机客户端</span>
+		<a href="http://zhongchao.9h-sports.com/welcome.html" class="btn-dl">免费下载</a>
+	</div>
+	<section class="w92">
+		<h1>{{if gt .topic.IsBest 0 }}<span>精华</span>{{end}}{{.topic.Title}}</h1>
+
+        <div class="user pb01 fl">
+        	<div class="headpic fl">
+			<img src="{{.topic.User.Avatar}}" alt="" >
+			</div>	
+			<div class="user-name fl">
+				<p class="txt01">{{.topic.User.NickName}} Lv6 <span>楼主</span></p>
+				<p class="txt02">第1楼 <img src="/images/times.png" alt="">{{.topic.PostedAt}}</p>
+			</div>			
+		</div>
+		<div class="topuser-txt fl">
+			<p>{{.topic.Content}}</p>
+		</div>
+		{{range .replys}}
+		<div class="user pb03 fl">
+        	<div class="headpic fl">
+			<img src="{{.User.Avatar}}" alt="" >
+			</div>	
+			<div class="user-name fl">
+				<p class="txt01 ">{{.User.NickName}} Lv6 </p>
+				<p class="txt02 pb02">第{{.Floor}}楼 <img src="/images/times.png" alt="">{{.PostedAt}}</p>
+				<p class="txt03 pb02">{{.Content}}</p>
+			</div>			
+		</div>
+		{{end}}
+	</section>
+</body>
+</html>

@@ -1,0 +1,302 @@
+get:
+  - key-url: /v1/group/sections/admin-users$
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/sections/admin-users
+  - key-url: /v1/group/sections$
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/sections
+  - key-url: /v1/group/sections/\d*$
+    path-params-index:
+      section_id: 1
+    params:
+      section_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: section
+        proxy-url: /group/v1/sections/{section_id}
+      - return-type: map
+        access-name: topedtopics
+        haspagesize: true
+        proxy-url: /group/v1/sections/{section_id}/topics?isTop=true
+      - return-type: map
+        access-name: topics
+        haspagesize: true
+        proxy-url: /group/v1/sections/{section_id}/topics?method=init
+  - key-url: /v1/group/sections/\d*/topics$
+    path-params-index:
+      section_id: 1
+    params:
+      section_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: topics
+        haspagesize: true
+        proxy-url: /group/v1/sections/{section_id}/topics
+  - key-url: /v1/group/sections/\d*/topics/\d*$
+    path-params-index:
+      section_id: 1
+      topic_id: 3
+    params:
+      section_id: 0
+      topic_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: topic
+        proxy-url: /group/v1/topics/{topic_id}
+      - return-type: map
+        access-name: praisedusers
+        proxy-url: /group/v1/topics/{topic_id}/praised-users
+      - return-type: map
+        access-name: replys
+        haspagesize: true
+        proxy-url: /group/v1/topics/{topic_id}/replys
+        sub-access-name: comments
+        sub-ref-params:
+          - replyId
+          - topicId
+        sub-query: /group/v1/topics/{topicId}/replys/{replyId}/comments
+  - key-url: /v1/group/topics/\d*/replys$
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: replys
+        haspagesize: true
+        proxy-url: /group/v1/topics/{topic_id}/replys
+        sub-access-name: comments
+        sub-ref-params:
+          - replyId
+          - topicId
+        sub-query: /group/v1/topics/{topicId}/replys/{replyId}/comments
+  - key-url: /v1/group/topics/\d*/praises$
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/topics/{topic_id}/praises
+  - key-url: /v1/group/topics/\d*/replys/\d*$
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: reply
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}
+      - return-type: map
+        access-name: comments
+        haspagesize: true
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}/comments
+  - key-url: /v1/group/topics
+    proxy-request:
+      - return-type: map
+        access-name: topics
+        haspagesize: true
+        proxy-url: /group/v1/topics
+  - key-url: /v1/group/message/at-me/\d*$
+    path-params-index: 
+      user_id: 2
+    params:
+      user_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: messages
+        haspagesize: true
+        proxy-url: /group/v1/message/at-me/{user_id}
+  - key-url: /v1/group/message/comment-me/\d*$
+    path-params-index: 
+      user_id: 2
+    params:
+      user_id: 0
+    proxy-request:
+      - return-type: map
+        access-name: messages
+        haspagesize: true
+        proxy-url: /group/v1/message/comment-me/{user_id}
+  - key-url: /v1/group/message/unread-count/\d*$
+    path-params-index:
+      user_id: 2
+    params:
+      user_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/message/unread-count/{user_id}
+post:
+  - key-url: /v1/group/message/set-at-me-all-read/\d*$
+    path-params-index: 
+      user_id: 2
+    params:
+      user_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/message/set-at-me-all-read/{user_id}
+  - key-url: /v1/group/message/set-comment-me-all-read/\d*$
+    path-params-index:
+      user_id: 2
+    params:
+      user_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/message/set-comment-me-all-read/{user_id}
+  - key-url: /v1/group/topics/\d*/replys/\d*/comment/\d*/delete$
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+      comment_id: 5
+    params:
+      topic_id: 0
+      reply_id: 0
+      comment_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}/comment/{comment_id}/delete
+  - key-url: /v1/group/topics/\d*/replys/\d*/delete$
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}/delete
+  - key-url: /v1/group/topics/\d*/delete$
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/topics/{topic_id}/delete
+  - key-url: /v1/group/message/set-read/\d*$
+    path-params-index:
+      message_id: 2
+    params:
+      message_id: 0
+    proxy-request:
+      - return-type: map
+        proxy-url: /group/v1/message/set-read/{message_id}
+  - key-url: /v1/group/sections/\d*/topics$ # 某个圈子内发表新帖
+    path-params-index:
+      section_id: 1
+    params:
+      section_id: 0
+    proxy-request:
+      - return-type: topic # 返回对象类型
+        proxy-url: /group/v1/sections/{section_id}/topics #代理地址
+  - key-url: /v1/group/topics/\d*/praises$ # 赞某个帖子
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/praises
+  - key-url: /v1/group/topics/\d*/shares$ # 分享某个帖子
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/shares
+  - key-url: /v1/group/topics/\d*/reports$ # 对某个帖子进行举报
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/reports
+  - key-url: /v1/group/topics/\d*/replys/\d*/reports$ # 举报跟帖
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}/reports
+  - key-url: /v1/group/topics/\d*/replys$ # 对某个帖子进行回帖
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/replys
+  - key-url: /v1/group/topics/\d*/replys/\d*/comments$ # 对某个回帖进行评论
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}/comments
+  - key-url: /v1/group/topics/\d*/praises$
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/praises
+put:
+  - key-url: /v1/group/topics/\d*$ # 修改某个帖子
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}
+  - key-url: /v1/group/topics/\d*/replys/\d*$ # 修改某个帖子
+    path-params-index:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}
+delete:
+  - key-url: /v1/group/topics/\d*$ # 删除某个帖子
+    path-params-index:
+      topic_id: 1
+    params:
+      topic_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}
+  - key-url: /v1/group/topics/\d*/praises/\d*$ # 取消赞某个帖子
+    path-params-index:
+      topic_id: 1
+      praise_id: 3
+    params:
+      topic_id: 0
+      praise_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/praises/{praise_id}
+  - key-url: /v1/group/topics/\d*/replys/\d*$ # 删除某个回帖
+    params:
+      topic_id: 1
+      reply_id: 3
+    params:
+      topic_id: 0
+      reply_id: 0
+    proxy-request:
+      - return-type: object
+        proxy-url: /group/v1/topics/{topic_id}/replys/{reply_id}
